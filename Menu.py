@@ -42,8 +42,8 @@ class Menu:
 
     def medirTemperatura(self):
         temperatura, humedad = self.sensorTemperatura.medirTemperatura()
-        print("Temperatura: {} °C".format(temperatura))
-        print("Humedad: {} %".format(humedad))
+        print("Temperatura: {0:0.1f}* °C".format(temperatura))
+        print("Humedad: {1:0.1f} %".format(humedad))
 
     def encenderLed(self):
         self.led.encender()

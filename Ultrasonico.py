@@ -9,7 +9,7 @@ class Ultrasonico:
         GPIO.setup(self.trigger, GPIO.OUT)
         GPIO.setup(self.echo, GPIO.IN)
         GPIO.output(self.trigger, GPIO.LOW)
-        time.sleep(2) 
+        time.sleep(0.2) 
 
     def medirDistancia(self):
         GPIO.output(self.trigger, GPIO.HIGH)
