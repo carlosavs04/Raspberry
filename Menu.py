@@ -1,12 +1,11 @@
-from Ultrasonico import Ultrasonico
-from Temperatura import Temperatura
-from Led import Led
+from Sensor import Sensor
 
 class Menu:
     def __init__(self):
-        self.sensorUltrasonico = Ultrasonico(23, 24)
-        self.sensorTemperatura = Temperatura(4)
-        self.led = Led(17)
+        self.ultrasonico = Sensor("ult", [23, 24], "Sensor ultrasonico", "Sensor para medir distancia")
+        self.temperatura = Sensor("tmp", [4], "Sensor DHT11", "Sensor para medir temperatura y humedad")
+        self.led1 = Sensor("led1", [17], "Led", "Led apagado")
+        self.led2 = Sensor("led2", [27], "Led", "Led encendido")
 
     def menu(self):
         opcion = '0'
@@ -19,10 +18,12 @@ class Menu:
 
             opcion = input("Introduce una opción: ")
             if opcion == '1':
-                self.medirDistancia()
+                while True:
+                    self.medirDistancia()
 
             elif opcion == '2':
-                self.medirTemperatura()
+                while True:
+                    self.medirTemperatura()
 
             elif opcion == '3':
                 self.encenderLed()
@@ -37,19 +38,19 @@ class Menu:
                 print("Opción inválida.")
 
     def medirDistancia(self):
-        distancia = self.sensorUltrasonico.medirDistancia()
+        distancia = self.ultrasonico
         print("Distancia: {} cm".format(distancia))
 
     def medirTemperatura(self):
-        temperatura, humedad = self.sensorTemperatura.medirTemperatura()
+        temperatura, humedad = self.temperatura
         print("Temperatura: {0:0.1f}* °C".format(temperatura))
         print("Humedad: {1:0.1f} %".format(humedad))
 
     def encenderLed(self):
-        self.led.encender()
+        self.led1
     
     def apagarLed(self):
-        self.led.apagar()
+        self.led2
 
 if __name__ == "__main__":
     menu = Menu()
