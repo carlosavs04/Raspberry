@@ -9,7 +9,8 @@ class Temperatura:
         try:
             temperatura = self.dhtDevice.temperature
             humedad = self.dhtDevice.humidity
-            return temperatura, humedad
+            array = [temperatura, humedad]
+            return array
         except RuntimeError as error:
             print(error.args[0])
             time.sleep(2.0)
