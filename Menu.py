@@ -38,11 +38,11 @@ class Menu:
                 print("Opción inválida.")
 
     def medirDistancia(self):
-        distancia = int(self.ultrasonico.choseSensor())
+        distancia = self.ultrasonico.choseSensor()
         print("Distancia: {} cm".format(distancia))
 
     def medirTemperatura(self):
-        temperatura, humedad = self.temperatura
+        temperatura, humedad = self.temperatura.choseSensor()
         print("Temperatura: {0:0.1f}* °C".format(temperatura))
         print("Humedad: {1:0.1f} %".format(humedad))
 
