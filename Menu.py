@@ -49,7 +49,7 @@ class Menu:
         print(temperatura)
 
     def medirHumedad(self):
-        humedad = self.temperatura.lectura()
+        humedad = self.humedad.lectura()
         print(humedad)
 
     def encenderLed(self):
