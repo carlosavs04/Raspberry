@@ -11,7 +11,6 @@ class Sensor:
         self.pines = pines
         self.nombre = nombre
         self.descripcion = descripcion
-        self.temperatura = Temperatura(self.pines[0])
 
     def choseSensor(self):
         self.sensor = ""
@@ -23,11 +22,9 @@ class Sensor:
             lectura.append(distancia)
 
         elif self.key == "tmp":
-            temperatura = self.temperatura.medirTemperatura()
+            self.sensor = Temperatura(self.pines[0])
+            temperatura, humedad = self.sensor.medirTemperatura()
             lectura.append(temperatura)
-
-        elif self.key == "hum":
-            humedad = self.temperatura.medirHumedad()
             lectura.append(humedad)
 
         else: 
@@ -41,6 +38,15 @@ class Sensor:
         valores = self.choseSensor()
         tiempo = time.time()
         fecha = datetime.datetime.fromtimestamp(tiempo).strftime('%H:%M:%S')
+
+        if(self.key == "tmp"):
+            data = {
+                "nombre": self.nombre,
+                "descripcion": self.descripcion,
+                "temperatura": valores[0],
+                "humedad": valores[1],
+                "fecha": fecha
+            }
 
         data = {
             "nombre": self.nombre,
