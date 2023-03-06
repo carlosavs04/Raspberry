@@ -12,10 +12,11 @@ class Menu:
         opcion = '0'
         while opcion != '5':
             print("1. Medir distancia")
-            print("2. Medir temperatura y humedad")
-            print("3. Encender led")
-            print("4. Apagar led")
-            print("5. Salir")
+            print("2. Medir temperatura")
+            print("3. Medir humedad")
+            print("4. Encender led")
+            print("5. Apagar led")
+            print("6. Salir")
 
             opcion = input("Introduce una opción: ")
             if opcion == '1':
