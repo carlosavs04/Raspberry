@@ -18,8 +18,7 @@ class Menu:
 
             opcion = input("Introduce una opción: ")
             if opcion == '1':
-                while True:
-                    self.medirDistancia()
+                self.medirDistancia()
 
             elif opcion == '2':
                 while True:
@@ -38,7 +37,7 @@ class Menu:
                 print("Opción inválida.")
 
     def medirDistancia(self):
-        distancia = self.ultrasonico.lectura()
+        distancia = self.ultrasonico.choseSensor()
         print("Distancia: {} cm".format(distancia))
 
     def medirTemperatura(self):
