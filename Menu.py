@@ -10,7 +10,7 @@ class Menu:
 
     def menu(self):
         opcion = '0'
-        while opcion != '5':
+        while opcion != '6':
             print("1. Medir distancia")
             print("2. Medir temperatura")
             print("3. Medir humedad")
