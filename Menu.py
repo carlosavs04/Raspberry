@@ -41,7 +41,8 @@ class Menu:
         print("Distancia: {} cm".format(distancia))
 
     def medirTemperatura(self):
-        temperatura, humedad = self.temperatura.lectura()
+        temperatura = self.temperatura.lectura()
+        print(temperatura)
 
     def encenderLed(self):
         self.led.encender()
