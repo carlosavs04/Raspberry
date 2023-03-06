@@ -19,7 +19,7 @@ class Sensor:
         if self.key == "ult":
             self.sensor = Ultrasonico(self.pines[0], self.pines[1])
             distancia = self.sensor.medirDistancia()
-            return distancia
+            lectura.append(distancia)
 
         elif self.key == "tmp":
             self.sensor = Temperatura(self.pines[0])
