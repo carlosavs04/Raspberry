@@ -15,6 +15,7 @@ class Ultrasonico:
         GPIO.output(self.trigger, GPIO.HIGH)
         time.sleep(0.00001)
         GPIO.output(self.trigger, GPIO.LOW)
+        pulse_start = 0
         while GPIO.input(self.echo) == GPIO.LOW:
             pulse_start = time.time()
         while GPIO.input(self.echo) == GPIO.HIGH:
