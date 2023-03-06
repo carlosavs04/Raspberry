@@ -4,7 +4,8 @@ from Led import Led
 class Menu:
     def __init__(self):
         self.ultrasonico = Sensor("ult", [23, 24], "Sensor ultrasonico", "Sensor para medir distancia")
-        self.temperatura = Sensor("tmp", [4], "Sensor DHT11", "Sensor para medir temperatura y humedad")
+        self.temperatura = Sensor("tmp", [4], "Sensor DHT11", "Sensor para medir temperatura")
+        self.humedad = Sensor("hum", [4], "Sensor DHT11", "Sensor para medir humedad")
         self.led = Led(17)
 
     def menu(self):
@@ -21,16 +22,18 @@ class Menu:
                 self.medirDistancia()
 
             elif opcion == '2':
-                while True:
-                    self.medirTemperatura()
+                self.medirTemperatura()
 
             elif opcion == '3':
+                self.medirHumedad()
+
+            elif opcion == '4':
                 self.encenderLed()
             
-            elif opcion == '4':
+            elif opcion == '5':
                 self.apagarLed()
 
-            elif opcion == '5':
+            elif opcion == '6':
                 print("Saliendo...")
             
             else:
@@ -41,8 +44,11 @@ class Menu:
         print("Distancia: {} cm".format(distancia))
 
     def medirTemperatura(self):
-        temperatura, humedad = self.temperatura.lectura()
+        temperatura = self.temperatura.lectura()
         print("Temperatura: {0:0.1f}* °C".format(temperatura))
+
+    def medirHumedad(self):
+        humedad = self.temperatura.lectura()
         print("Humedad: {1:0.1f} %".format(humedad))
 
     def encenderLed(self):

@@ -23,8 +23,12 @@ class Sensor:
 
         elif self.key == "tmp":
             self.sensor = Temperatura(self.pines[0])
-            temperatura, humedad = self.sensor.medirTemperatura()
+            temperatura = self.sensor.medirTemperatura()
             lectura.append(temperatura)
+
+        elif self.key == "hum":
+            self.sensor = Temperatura(self.pines[0])
+            humedad = self.sensor.medirHumedad()
             lectura.append(humedad)
 
         else: 

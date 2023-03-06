@@ -7,8 +7,20 @@ class Temperatura:
 
     def medirTemperatura(self):
         try:
-            temperatura, humedad = self.dhtDevice.temperature, self.dhtDevice.humidity
-            return temperatura, humedad
+            temperatura = self.dhtDevice.temperature
+            return temperatura
+        except RuntimeError as error:
+            print(error.args[0])
+            time.sleep(2.0)
+            return None
+        except Exception as error:
+            self.dhtDevice.exit()
+            raise error
+        
+    def medirHumedad(self):
+        try:
+            humedad = self.dhtDevice.humidity
+            return humedad
         except RuntimeError as error:
             print(error.args[0])
             time.sleep(2.0)
