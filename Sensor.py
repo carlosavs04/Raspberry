@@ -27,10 +27,6 @@ class Sensor:
             lectura.append(temperatura)
             lectura.append(humedad)
 
-        elif self.key == "led":
-            self.sensor = Led(self.pines[0])
-            self.sensor.encender()
-
         else: 
             print("Sensor no encontrado")
             return None

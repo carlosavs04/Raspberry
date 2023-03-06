@@ -1,10 +1,11 @@
 from Sensor import Sensor
+from Led import Led
 
 class Menu:
     def __init__(self):
         self.ultrasonico = Sensor("ult", [23, 24], "Sensor ultrasonico", "Sensor para medir distancia")
         self.temperatura = Sensor("tmp", [4], "Sensor DHT11", "Sensor para medir temperatura y humedad")
-        self.led = Sensor("led", [17], "Led", "Led que prende y apaga")
+        self.led = Led(17)
 
     def menu(self):
         opcion = '0'
@@ -46,10 +47,10 @@ class Menu:
         print("Humedad: {1:0.1f} %".format(humedad))
 
     def encenderLed(self):
-        self.led.lectura()
-    
+        self.led.encender()
+
     def apagarLed(self):
-        self.led.lectura()
+        self.led.apagar()
 
 if __name__ == "__main__":
     menu = Menu()
