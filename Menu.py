@@ -38,7 +38,7 @@ class Menu:
                 print("Opción inválida.")
 
     def medirDistancia(self):
-        distancia = self.ultrasonico.lectura()
+        distancia = self.ultrasonico.choseSensor()
         print("Distancia: {} cm".format(distancia))
 
     def medirTemperatura(self):
