@@ -42,15 +42,15 @@ class Menu:
 
     def medirDistancia(self):
         distancia = self.ultrasonico.lectura()
-        print("Distancia: {} cm".format(distancia))
+        print(distancia)
 
     def medirTemperatura(self):
         temperatura = self.temperatura.lectura()
-        print("Temperatura: {0:0.1f}* °C".format(temperatura))
+        print(temperatura)
 
     def medirHumedad(self):
         humedad = self.temperatura.lectura()
-        print("Humedad: {1:0.1f} %".format(humedad))
+        print(humedad)
 
     def encenderLed(self):
         self.led.encender()
