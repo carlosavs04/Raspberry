@@ -1,31 +1,36 @@
 from Ultrasonico import Ultrasonico
 from Temperatura import Temperatura
-from Led import Led
 import time
 import json
 import datetime
+from bson import ObjectId
+from Lectura import Lectura
 
 class Sensor:
-    def __init__(self, key = "", pines = [], nombre = "", descripcion = ""):
+    def __init__(self, key = "", pines = [], nombre = "", descripcion = "", tipoDato = []):
+        self._id = ObjectId()
         self.key = key
         self.pines = pines
         self.nombre = nombre
         self.descripcion = descripcion
+        self.tipoDato = tipoDato
+        self.read = Lectura()
 
-    def choseSensor(self):
-        self.sensor = ""
+    def sensores(self):
         lectura = []
 
         if self.key == "ult":
-            self.sensor = Ultrasonico(self.pines[0], self.pines[1])
-            distancia = self.sensor.medirDistancia()
+            ultrasonicoSensor = Ultrasonico(self.pines[0], self.pines[1])
+            distancia = ultrasonicoSensor.medirDistancia()
             lectura.append(distancia)
+            self.tipoDato = ["cm"]
 
         elif self.key == "tmp":
-            self.sensor = Temperatura(self.pines[0])
-            temperatura, humedad = self.sensor.medirTemperatura()
+            dhtSensor = Temperatura(self.pines[0])
+            temperatura, humedad = dhtSensor.medirTemperatura()
             lectura.append(temperatura)
             lectura.append(humedad)
+            self.tipoDato = ["°C", "%"]
 
         else: 
             print("Sensor no encontrado")
@@ -35,29 +40,32 @@ class Sensor:
 
     def lectura(self):
         valores = []
-        valores = self.choseSensor()
+        valores = self.sensores()
         tiempo = time.time()
-        fecha = datetime.datetime.fromtimestamp(tiempo).strftime('%H:%M:%S')
+        fecha = datetime.datetime.fromtimestamp(tiempo).strftime('%Y-%m-%d %H:%M:%S')
+        data = []
 
-        if(self.key == "tmp"):
-            data = {
-                "nombre": self.nombre,
-                "descripcion": self.descripcion,
-                "temperatura": valores[0],
-                "humedad": valores[1],
-                "fecha": fecha
-            }
+        try:
+            self._id.is_valid()
 
-        data = {
-            "nombre": self.nombre,
-            "descripcion": self.descripcion,
-            "valores": valores,
-            "fecha": fecha
-        }
+        except:
+            pass
 
+        else:
+            self._id = ObjectId()
+
+        if self.key == "tmp":
+            data1 = Lectura(self._id, self.nombre, self.descripcion, self.tipoDato[0], valores[0], fecha)
+            data2 = Lectura(self._id, self.nombre, self.descripcion, self.tipoDato[1], valores[1], fecha)
+            data.append(data1.getDict())
+            data.append(data2.getDict())
+
+        else:
+            data1 = Lectura(self._id, self.nombre, self.descripcion, self.tipoDato[0], valores[0], fecha)
+            data.append(data1.getDict())
+            
         dataJson = json.dumps(data)
         return dataJson
-
 
 
 
