@@ -5,19 +5,18 @@ class JsonFile:
         self.archivo = archivo
 
     def readDocument(self):
-        data = []
-        file_exists = os.path.isfile(self.archivo)
-        
-        if file_exists:
-            nDocument = open(self.archivo, "r")
-            data = json.loads(nDocument.read())
-            return data
+        try:
+            with open(self.archivo, 'r') as archivo_json:
+                datos = json.load(archivo_json)
+            return datos
+        except FileNotFoundError:
+            with open(self.archivo, 'w') as archivo_json:
+                json.dump([], archivo_json)
+            return []
 
     def writeDocument(self, datos):
-        nDocument = open(self.archivo, "w")
-        data = json.dumps(datos, indent = 3)
-        nDocument.write(data)
-        return nDocument
+        with open(self.archivo, 'w') as archivo_json:
+            json.dump(datos, archivo_json)
     
     def clearFile(self, archivo):
         os.remove(archivo)

@@ -27,7 +27,7 @@ class Lista:
             return self.lista[int(cli)]
 
     def clearFile(self, archivo):
-        self.lista = []
-        self.json.writeDocument(self.lista)
+        self.lista.clear()
+        self.json.writeDocument([])
     
         
