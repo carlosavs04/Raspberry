@@ -9,8 +9,8 @@ class Menu:
         self.lectura = Lectura()
         self.bandera = False
         self.bandera2 = 0
-        self.ultrasonico = Sensor("ult", [23, 24], "Sensor ultrasonico", "Sensor para medir distancia")
-        self.temperatura = Sensor("tmp", [4], "Sensor DHT11", "Sensor para medir temperatura y humedad")
+        self.ultrasonico = Sensor("ult", [23, 24], "Sensor ultrasonico", "Sensor para medir distancia", ["cm"])
+        self.temperatura = Sensor("tmp", [4], "Sensor DHT11", "Sensor para medir temperatura y humedad", ["°C", "%"])
         self.led = Led(17)
         self.objeto_mongo = MongoDB()
         self.wait = 120

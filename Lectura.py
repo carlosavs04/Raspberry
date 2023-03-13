@@ -2,7 +2,7 @@ from Lista import Lista
 from bson import ObjectId
 
 class Lectura(Lista):
-    def __init__(self, nombre, descripcion, valores, tipoDato, fecha):
+    def __init__(self, nombre = "", descripcion = "", valores = "", tipoDato = "", fecha = ""):
         super().__init__("Sensores.json")
         self._id = ObjectId()
         self.nombre = nombre
