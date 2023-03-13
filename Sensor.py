@@ -14,7 +14,6 @@ class Sensor:
         self.nombre = nombre
         self.descripcion = descripcion
         self.tipoDato = tipoDato
-        self.read = Lectura()
 
     def sensores(self):
         lectura = []
