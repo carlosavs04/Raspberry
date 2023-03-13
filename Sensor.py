@@ -54,10 +54,11 @@ class Sensor:
             self._id = ObjectId()
 
         if self.key == "tmp":
-            data1 = Lectura(self.key, self.nombre, self.descripcion, valores[0], self.tipoDato[0], fecha)
-            data2 = Lectura(self.key, self.nombre, self.descripcion, valores[1], self.tipoDato[1], fecha)
-            data.append(data1.getDict())
-            data.append(data2.getDict())
+            if len(valores) > 1:
+                data1 = Lectura(self.key, self.nombre, self.descripcion, valores[0], self.tipoDato[0], fecha)
+                data2 = Lectura(self.key, self.nombre, self.descripcion, valores[1], self.tipoDato[1], fecha)
+                data.append(data1.getDict())
+                data.append(data2.getDict())
 
         else:
             data1 = Lectura(self.key, self.nombre, self.descripcion, valores[0], self.tipoDato[0], fecha)
