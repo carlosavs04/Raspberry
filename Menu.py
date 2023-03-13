@@ -71,10 +71,10 @@ class Menu:
             listaSensores = self.lectura.mostrar()
             if len(listaSensores) >= 1:
                 for i in listaSensores:
-                    if self.objeto_mongo.find_one(self.collection, i) == None:
-                        self.objeto_mongo.insert_one(self.collection, i)
-                    else:
+                    if self.objeto_mongo.find(self.collection, i):
                         pass
+                    else:
+                        self.objeto_mongo.insert_one(self.collection, i)
 
                 self.lectura.clearFile("Sensores.json")
             self.borrarHilo()
@@ -99,11 +99,11 @@ class Menu:
             listaSensores = self.lectura.mostrar()
             if len(listaSensores) >= 1:
                 for i in listaSensores:
-                    if self.objeto_mongo.find_one(self.collection, i) == None:
-                        self.objeto_mongo.insert_one(self.collection, i)
-                    else:
+                    if self.objeto_mongo.find(self.collection, i):
                         pass
-
+                    else:
+                        self.objeto_mongo.insert_one(self.collection, i)
+                        
                 self.lectura.clearFile("Sensores.json")
             self.borrarHilo()
 
@@ -129,10 +129,10 @@ class Menu:
             listaSensores = self.lectura.mostrar()
             if len(listaSensores) >= 1:
                 for i in listaSensores:
-                    if self.objeto_mongo.find_one(self.collection, i) == None:
-                        self.objeto_mongo.insert_one(self.collection, i)
-                    else:
+                    if self.objeto_mongo.find(self.collection, i):
                         pass
+                    else:
+                        self.objeto_mongo.insert_one(self.collection, i)
 
                 self.lectura.clearFile("Sensores.json")
             self.borrarHilo()
