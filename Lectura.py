@@ -2,9 +2,10 @@ from Lista import Lista
 from bson import ObjectId
 
 class Lectura(Lista):
-    def __init__(self, nombre = "", descripcion = "", valores = "", tipoDato = "", fecha = ""):
+    def __init__(self, key = "", nombre = "", descripcion = "", valores = "", tipoDato = "", fecha = ""):
         super().__init__("Sensores.json")
         self._id = ObjectId()
+        self.key = key
         self.nombre = nombre
         self.descripcion = descripcion
         self.valores = valores
@@ -12,7 +13,7 @@ class Lectura(Lista):
         self.fecha = fecha
 
     def __str__(self):
-        return f"Nombre: {self.nombre}, Descripción: {self.descripcion}, Valores: {self.valores}, Tipo de dato: {self.tipoDato}, Fecha: {self.fecha}"
+        return f"Id: {self._id} Key: {self.key} Nombre: {self.nombre}, Descripción: {self.descripcion}, Valores: {self.valores}, Tipo de dato: {self.tipoDato}, Fecha: {self.fecha}"
     
     def getDict(self):
         diccionario = []
@@ -38,7 +39,7 @@ class Lectura(Lista):
         sensor_obj = []
         
         for i in sensor_json:
-            cli = Lectura(i["_id"], i["nombre"], i["descripcion"], i["valores"], i["tipoDato"], i["fecha"])
+            cli = Lectura(i["key"], i["nombre"], i["descripcion"], i["valores"], i["tipoDato"], i["fecha"])
             sensor_obj.append(cli)
         
         return sensor_obj
